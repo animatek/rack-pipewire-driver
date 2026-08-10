@@ -1,0 +1,36 @@
+# Rack plugin build output
+/build/
+/dist/
+/dep/
+/.cache/
+/bin/
+/obj/
+
+# Binarios y objetos
+*.dll
+*.so
+*.dylib
+*.o
+*.obj
+*.a
+*.lib
+*.pdb
+*.dSYM/
+
+# Paquetes y zips
+*.zip
+*.7z
+*.tar
+*.gz
+
+# IDEs y sistema
+.vscode/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+.codex
+
+# Claude Code (local-only)
+.claude/
+.fuse_hidden*

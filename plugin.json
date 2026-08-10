@@ -1,0 +1,13 @@
+{
+  "slug": "AnimatekPipeWire",
+  "name": "PipeWire Audio Driver",
+  "version": "2.0.0",
+  "license": "GPL-3.0-or-later",
+  "brand": "Animatek",
+  "author": "Javier Melgar",
+  "authorEmail": "animatek909@gmail.com",
+  "sourceUrl": "https://github.com/animatek/rack-pipewire-driver",
+  "pluginUrl": "https://animatek.net",
+  "description": "Adds a native PipeWire driver to VCV Rack's audio device menu on Linux. Contains no modules.",
+  "modules": []
+}
