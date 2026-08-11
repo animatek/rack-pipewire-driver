@@ -788,6 +788,8 @@ struct Device : rack::audio::Device {
         if (frames > (uint32_t) MAX_FRAMES) {
             // Can't service a quantum this large. Silence rather than smear.
             for (int c = 0; c < numOutputs; c++) {
+                if (!outPorts[c])
+                    continue;
                 float* dst = (float*) lib.filter_get_dsp_buffer(outPorts[c], frames);
                 if (dst)
                     memset(dst, 0, frames * sizeof(float));
@@ -800,8 +802,10 @@ struct Device : rack::audio::Device {
         }
 
         // Planar (one buffer per port) -> interleaved, which is what Rack wants.
+        // A port the server refused to create is NULL and reads as silence.
         for (int c = 0; c < numInputs; c++) {
-            const float* src = (const float*) lib.filter_get_dsp_buffer(inPorts[c], frames);
+            const float* src = inPorts[c]
+                ? (const float*) lib.filter_get_dsp_buffer(inPorts[c], frames) : NULL;
             if (src) {
                 for (uint32_t i = 0; i < frames; i++)
                     inBuf[i * numInputs + c] = src[i];
@@ -815,6 +819,8 @@ struct Device : rack::audio::Device {
         processBuffer(inBuf.data(), numInputs, outBuf.data(), numOutputs, (int) frames);
 
         for (int c = 0; c < numOutputs; c++) {
+            if (!outPorts[c])
+                continue;
             float* dst = (float*) lib.filter_get_dsp_buffer(outPorts[c], frames);
             if (!dst)
                 continue;
@@ -852,8 +858,8 @@ struct Driver : rack::audio::Driver {
         return "PipeWire";
     }
 
-    /** Device IDs 0..2 are the manual-routing nodes; everything above is an
-    index into the current sink list. */
+    /** The first NUM_MANUAL_DEVICES IDs are the manual-routing nodes;
+    everything above is an index into the current sink list. */
     bool getTarget(int deviceId, Target& target) {
         if (deviceId < NUM_MANUAL_DEVICES)
             return false;
