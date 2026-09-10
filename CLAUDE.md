@@ -24,3 +24,7 @@ changelog de este repo. El detalle técnico se queda aquí y no se duplica.
 - Un cambio sin commitear se marca explícitamente como **cambio local, sin commit**.
 - El panel lo recoge en la ingesta de cada mañana. Para verlo ya:
   `Animatek.net/panel/ingesta/actualizar.sh`.
+- **No lo leas entero para escribir en él.** Crece unos 13 KB al día y está partido por meses:
+  el mes en curso en la nota y los cerrados en `CHANGELOG - CODE/AAAA-MM.md`, al lado. Para
+  consultarlo hay `cambios` — `cambios buscar "morph"`, `cambios de NME`, `cambios ver
+  2026-09-10` —, que pregunta a la base y devuelve la entrada, no el archivo.
