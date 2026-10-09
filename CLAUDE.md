@@ -16,6 +16,7 @@ lo que pasaba antes del 2026-09-10, cuando el panel solo leía el changelog de `
 Ahí va el resumen: qué cambió, la verificación real, el agente, y el commit o la ruta del
 changelog de este repo. El detalle técnico se queda aquí y no se duplica.
 
+- **Se escribe con `cambios apuntar`**, no editando el archivo: `cambios apuntar "<proyecto>" "<qué cambió, verificación, commit>" -a <agente>` lo pone bajo el día y el proyecto sin reescribir nada ni romper el enlace (`cambios proyectos` da los nombres; si el enlace ya está roto, `cambios reparar`). Nunca `sed -i`, `>` ni una herramienta que guarde el archivo entero: así se rompió el enlace tres veces.
 - Es un **enlace simbólico** a la nota de Obsidian `00 - Sistema/CHANGELOG - CODE.md`. Se edita
   el destino: nunca se sustituye por un archivo suelto ni se crea una segunda copia. Si no está
   disponible, se dice y se para; no se inventa otro sitio.
